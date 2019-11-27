@@ -38,7 +38,7 @@ void main()
 
 	for (int j = 0; j < slovar.size(); j++)
 	{
-		if(flags[j]-48) cout << slovar[j] << endl;
+		if(flags[j]-48) cout << slovar[j] << " ";
 	}
 	system("pause");
 }
