@@ -31,16 +31,28 @@ bool iron(char* name, int key)
 
 	file.open(name, ios::binary);
 	sh_file.open(sh_name, ios::binary | ios::trunc);
-
+	int index = 0;
+	bool down = true;
+	bool up = false;
 	if (file.is_open() && key < size){
 
 		for (int i = 0; i < size-1; i++){
 			char ch = file.get();
-			buf[(i % key)]+=ch;
+			
+			buf[index]+=ch;
+			if (up) index--;
+			if (down) index++;
+			if (index % (key-1) == 0)
+			{
+				swap(up, down);
+			}
+			
+			
 		}
 		
 		for (int j = 0; j < key; j++){
-			sh_file << buf[j];// warning, back part of string (/0/0/0/0/0)
+			sh_file << buf[j]<<endl;// warning, back part of string (/0/0/0/0/0)
+			cout << buf[j];
 		}
 
 	file.close();
@@ -50,6 +62,7 @@ bool iron(char* name, int key)
 	else return false;
 }
 int main() {
-	iron((char*)"File.txt",3);
+	setlocale(LC_ALL,"rus");
+	iron((char*)"File.txt",4);
 	return 0;
 }
