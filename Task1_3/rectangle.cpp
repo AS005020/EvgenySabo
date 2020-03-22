@@ -159,7 +159,7 @@ void Rectangle::redefine_a_b()
 
 double Rectangle::v_circle()
 {
-	return (this->a == this->b) ? 0 : this->b / 2;
+	return (this->a == this->b) ? this->b / 2 : 0;
 }
 
 ostream& operator<<(ostream& out, Rectangle& rectangle)

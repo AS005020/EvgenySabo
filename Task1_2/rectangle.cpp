@@ -83,6 +83,11 @@ double Rectangle::o_circle()
 {
 	return sqrt(pow(this->a, 2) + pow(this->b, 2)) / 2;
 }
+double Rectangle::v_circle()
+{
+	return (this->a == this->b) ? this->a / 2 : 0;
+	// 0 if can't enter a circle in the rectangle
+}
 
 bool Rectangle::is_quadrate()
 {
@@ -127,14 +132,6 @@ void Rectangle::geometry_change(double a, double b)
 	commonS += this->square();
 }
 
-
-
-
-
-double Rectangle::v_circle()
-{
-	return (this->a < this->b) ? this->a / 2 : this->b / 2;
-}
 
 ostream& operator<<(ostream& out, Rectangle& rectangle)
 {
