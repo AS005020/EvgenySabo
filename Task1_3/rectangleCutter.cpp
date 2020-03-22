@@ -35,7 +35,7 @@ RectangleCutter::RectangleCutter(Point& left, Point& right)
 
 void RectangleCutter::insertRectangle(Rectangle& rectangle)
 {
-	//				right side									left side							down side						upper side            
+	//	right side					left side			down side				upper side            
 	if ((rectangle.x_l_bot > this->x_r_bot) || (rectangle.x_r_bot < this->x_l_bot) || (rectangle.y_l_top < this->y_l_bot) || rectangle.y_l_bot > this->y_l_top)
 	{
 		//most near ... angle
