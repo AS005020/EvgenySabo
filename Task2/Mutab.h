@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "functions.h"
 class Mutab {	//mutabelniy
 	int param;
 	int d_border_param, up_border_param;

@@ -1,6 +1,7 @@
 #include "Mutab.h"
+
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 Mutab::Mutab()
@@ -29,15 +30,18 @@ void Mutab::set_param(int a)
 void Mutab::change_param(int step)
 {
 	char ch;
-	do {
-		cout << "Enter + or (-) : ";
+	for (;;) {
+		
+		cout << "Enter + or - \n\t(for quite enter anything else):" <<endl;
 		cin >> ch;
-	} while (!strchr("+-", tolower(ch)));
-	if (ch == '+')
-		set_param(this->param + step);
-	else
-		set_param(this->param - step);
-
+		if (!strchr("+-", tolower(ch)))
+			return;	
+		if (ch == '+')
+			set_param(this->param + step);
+		else
+			set_param(this->param - step);
+		cout << "Current value: " << this->get_param() << endl;
+	} 
 }
 
 void Mutab::set_border_param(int down, int up)
@@ -65,17 +69,10 @@ bool Mutab::is_border()
 
 string Mutab::to_string_param()
 {
-	string buf = string("a: ");
-	int last_pos = buf.size();
-	if (this->param < 0) {
-		buf.insert(buf.begin() + last_pos, '-');
-		last_pos++;
-	}
-	int ch = abs(this->param);
-	do{
-		char symb = (char)(ch % 10 + 48);
-		buf.insert(buf.begin()+last_pos, symb);
-		ch = ch / 10;
-	} while (ch > 0);
+	string buf = string("param: ");
+	buf += itoa(this->param);
+	if (border_param)
+		buf += " having the border from " + itoa(d_border_param) + " to " + itoa(up_border_param);
 	return buf;
+	
 }

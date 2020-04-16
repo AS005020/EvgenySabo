@@ -20,13 +20,8 @@ void Device::status()
 
 void Device::change()
 {
-	cout << "Whould you want change current value with the step?" << endl;
-	char ch;
-	do {
-		cout << "( Y)es/( N)o: " ;
-		cin >> ch;
-	} while (!strchr("yn", tolower(ch)));
-	if (tolower(ch) == 'y') {
+	cout << "Whould you want change current value: "<<m.get_param()<<" with the step?" << endl;
+	if (yes_no()) {
 		int step;
 		cout << "Enter step: " << endl;
 		cin >> step;
@@ -34,6 +29,22 @@ void Device::change()
 	}
 	else
 		enter();
+}
+
+void Device::border()
+{
+	int up, down;
+	if (m.is_border()) {
+		cout << "You want to set new borders?";
+		if (!yes_no())
+			return;
+	}
+	cout << "Please set new borders" << endl;
+	cout << "Up: ";
+	cin >> up;
+	cout << "Down: ";
+	cin >> down;
+	m.set_border_param(up,down);
 }
 
 void Device::update()
@@ -45,14 +56,15 @@ char Device::menu()
 {
 	char ch;
 	do {
-		std::cout << "( E)nter m\n";// Enter element m
+		//std::cout << "( E)nter m\n";// Enter the element m
 		std::cout << "( S)tatus \n";// Display all
-		std::cout << "( C)hange m \n";// Change element m
+		std::cout << "( C)hange m \n";// Change the element m
+		std::cout << "( B)order m\n";// Enter border of the  element m
 		std::cout << "( Q)uit\n\n";
 		std::cout << "Choose command: ";
 
 		std::cin >> ch;
-	} while (!strchr("escq", tolower(ch)));
+	} while (!strchr("bscq", tolower(ch)));
 	return tolower(ch);
 }
 
@@ -65,6 +77,9 @@ void Device::start()
 		switch (choice) {
 		case 'e':	
 			enter();
+			break;
+		case 'b':
+			border();
 			break;
 		case 's':	
 			status();

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "functions.h"
 class Nemut {	//mutabelniy
 	int param;
 public:

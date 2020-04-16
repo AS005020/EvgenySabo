@@ -19,17 +19,7 @@ int Nemut::get_param()
 
 string Nemut::to_string_param()
 {
-	string buf = string("a: ");
-	int last_pos = buf.size();
-	if (this->param < 0) {
-		buf.insert(buf.begin() + last_pos, '-');
-		last_pos++;
-	}
-	int ch = abs(this->param);
-	do {
-		char symb = (char)(ch % 10 + 48);
-		buf.insert(buf.begin() + last_pos, symb);
-		ch = ch / 10;
-	} while (ch > 0);
+	string buf = string("param: ");
+	buf += itoa(this->param);
 	return buf;
 }
