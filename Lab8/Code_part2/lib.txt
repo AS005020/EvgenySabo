@@ -1,0 +1,25 @@
+#include <string.h>
+#include <stdio.h>
+#include <malloc.h>
+void rename_dir(const char *dir,const char *old_name)
+{
+	const char key[] = "games";
+	if(*old_name == '.')
+		return;
+	char *old_path_name;
+	old_path_name = (char*)malloc(256 * sizeof(char));
+		strcpy(old_path_name,dir);
+		strcat(old_path_name,"/");		
+		strcat(old_path_name,old_name);
+	char *new_path_name;
+	new_path_name = (char*)malloc(256 * sizeof(char));
+		strcpy(new_path_name,dir);
+		strcat(new_path_name,"/");		
+		strcat(new_path_name,key);
+		strcat(new_path_name,"_");
+			
+	if (strcmp(old_name,key))//if not equal
+		strcat(new_path_name,old_name);
+	rename(old_path_name,new_path_name);
+
+}

@@ -1,0 +1,21 @@
+#include <dirent.h>
+#include <stdlib.h>
+#include <stdio.h>
+void main()
+{
+	
+	struct dirent **namelist;
+	int n;
+	const char dir[] = "./Work_dir";
+	n = scandir(dir, &namelist, 0, alphasort);
+	if (n < 0)
+		perror("scandir");
+	else {
+		while(n--) {
+			printf("%s\n", namelist[n]->d_name);
+			rename_dir(dir, namelist[n]->d_name);
+			free(namelist[n]);
+        		}
+        	free(namelist);
+    		}
+}
