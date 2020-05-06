@@ -6,7 +6,11 @@ void main()
 	
 	struct dirent **namelist;
 	int n;
-	const char dir[] = "./Work_dir";
+	char *dir;
+	dir = (char*)malloc(256 * sizeof(char));
+	printf("Enter dir: ");
+	scanf("%s", dir);
+
 	n = scandir(dir, &namelist, 0, alphasort);
 	if (n < 0)
 		perror("scandir");
